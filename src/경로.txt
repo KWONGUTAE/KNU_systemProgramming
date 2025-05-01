@@ -1,0 +1,5 @@
+cd Documents/경북대학교/강의/시스템프로그래밍_류은경/src
+
+cd Documents/경북대학교/강의/시스템프로그래밍_류은경/src/강의자료
+
+cd Documents/경북대학교/강의/시스템프로그래밍_류은경/src/HW

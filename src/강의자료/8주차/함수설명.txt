@@ -1,0 +1,70 @@
+좋아, 네가 물어본 건 시스템 프로그래밍에서 특히 터미널 제어를 할 때 사용하는 ncurses 라이브러리 함수들이야.
+
+하나하나 깔끔하게 정리해줄게! 👇
+📚 ncurses 주요 함수 설명
+함수 이름	설명
+initscr()	ncurses 모드 시작. 터미널을 ncurses가 제어할 수 있게 초기화하는 함수. 이걸 호출해야 move, addstr 같은 함수를 쓸 수 있어.
+endwin()	ncurses 모드 종료. 터미널을 다시 원래 상태로 돌려놓음. 프로그램 끝나기 전에 꼭 호출해야 터미널이 깨끗하게 복구돼.
+refresh()	화면 갱신. 메모리상(window buffer)에서 작업한 내용을 실제 터미널 화면에 출력함. (addstr, move 같은 함수를 써도 바로 출력 안 됨, refresh() 해야 보임.)
+move(y, x)	커서 이동. (row, column) 위치로 커서를 옮김. (y = 세로줄, x = 가로줄)
+ex) move(5, 10) → 5번째 줄, 10번째 칸으로 커서 이동
+addstr(str)	문자열 출력. 현재 커서 위치에 문자열을 출력함.
+addch(ch)	문자 한 개 출력. 현재 커서 위치에 글자 하나를 출력함.
+clear()	화면 전체 지우기. 화면을 깨끗하게 지우고 커서는 (0,0)으로 감. (refresh() 해야 실제로 적용됨.)
+standout()	특별 강조 모드 시작. 글씨를 굵게 하거나 배경색을 바꿔서 "강조된" 모양으로 출력하게 설정함. (시스템마다 스타일 다를 수 있음)
+standend()	특별 강조 모드 종료. standout()으로 들어간 강조 모드를 해제하고 다시 평범한 출력으로 돌아옴.
+✨ 간단한 예시 코드
+
+#include <ncurses.h>
+
+int main() {
+    initscr();          // ncurses 모드 시작
+    clear();            // 화면 초기화
+
+    move(5, 10);        // (5, 10)으로 커서 이동
+    addstr("Hello, world!"); // 문자열 출력
+
+    move(7, 10);
+    standout();         // 강조 모드 켬
+    addstr("Important message!"); 
+    standend();         // 강조 모드 끔
+
+    refresh();          // 실제 터미널에 그리기
+
+    getch();            // 키 입력 기다림
+    endwin();           // ncurses 모드 종료
+    return 0;
+}
+
+이 프로그램은
+
+    5번째 줄 10번째 칸에 "Hello, world!" 출력
+
+    7번째 줄 10번째 칸에 강조된 "Important message!" 출력
+
+    키 하나 누르면 프로그램 종료
+
+    터미널 복구 완료
+
+이런 식으로 동작할 거야.
+🧠 요약
+
+    initscr() → 시작
+
+    endwin() → 종료
+
+    refresh() → 화면 갱신
+
+    move() → 커서 이동
+
+    addstr() / addch() → 출력
+
+    clear() → 화면 지움
+
+    standout(), standend() → 강조 시작/끝
+
+💬 혹시 추가로,
+
+    getch(), noecho(), cbreak(), keypad() 같은 함수들도 궁금해? (이것들은 키보드 입력 다루는 함수들이야, 같이 배우면 진짜 편해져.)
+    필요하면 이어서 설명해줄게! ✨
+    궁금해? 🎯
