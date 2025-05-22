@@ -10,12 +10,15 @@
 #include	<signal.h>
 #include	<string.h>
 #include	<stdlib.h>
+#include <unistd.h>
+#include <sys/wait.h>
+
 
 #define	MAXARGS	   20	/* cmdline args	*/
 #define	ARGLEN      100	/* token length	*/
 
 char *makestring(char*);
-int execute(char*[]);
+void execute(char*[]);
 
 int main(void)
 {
@@ -58,7 +61,7 @@ void execute( char *arglist[] )
 			while( wait(&exitstatus) != pid )
 				;
 			printf("child exited with status %d,%d\n",
-					exitstatus>>8, exitstatus&0377);
+					exitstatus>>8, exitstatus&0377); // C에서 숫자가 0으로 시작하면 8진수로 인식함.
 	}
 }
 
