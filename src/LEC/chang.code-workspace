@@ -1,0 +1,24 @@
+{
+	"folders": [
+		{
+			"path": "../chang"
+		},
+		{
+			"path": "../EXAM"
+		},
+		{
+			"path": "../HW"
+		},
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"dirent.h": "c",
+			"stat.h": "c",
+			"unistd.h": "c",
+			"ctype.h": "c"
+		}
+	}
+}
